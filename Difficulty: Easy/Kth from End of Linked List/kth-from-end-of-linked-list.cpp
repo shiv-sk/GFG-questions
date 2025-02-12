@@ -37,17 +37,21 @@ class Solution {
   public:
     int getKthFromLast(Node *head, int k) {
         // Your code here
-        vector<int>vec;
-        while(head != NULL){
-            vec.push_back(head->data);
-            head = head->next;
+        int size = 0;
+        Node * temp = head;
+        while(temp != NULL){
+            size++;
+            temp = temp->next;
         }
-        int size = vec.size();
         if(k > size){
             return -1;
         }
-        int val = vec.size() - k;
-        return vec[val];
+        int target = size - k;
+        temp = head;
+        for(int i = 0; i < target; i++){
+            temp = temp->next;
+        }
+        return temp->data;
     }
 };
 
